@@ -51,24 +51,27 @@ class matrix:
                         w.mat.append(0)
                         for k in range(self.n):
                             w.mat[(i*obj.n)+j]=self.mat[(i*self.n)+k]*obj.mat[(k*obj.n)+j]+w.mat[(i*obj.n)+j]
-                return (w)
             else:
                 print("wrong matrix dimension")
-                pass
+                w=matrix(0,0)
         else:
             w=matrix(self.n,self.m)
             for i in range((self.m*self.n)):
                 w.mat.append(self.mat[i]*obj)
-            return(w)
+        return(w)
 n=int(input())
 m=int(input())
 k=matrix(n,m)
 r = open("file.txt", "r")
 k.read(r)
-q=matrix(m,n)
+o=int(input())
+j=int(input())
+q=matrix(o,j)
 z = open("obj.txt", "r")
 q.read(z)
 e=k.transpose()
 e.printf()
 w=k*q
 w.printf()
+e=k.trace()
+print(e)
