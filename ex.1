@@ -1,0 +1,74 @@
+class matrix:
+    def __init__(self,n,m):
+        self.n=n #lengh
+        self.m=m
+        self.mat=[]
+    def read(self,file):
+        self.mat=list(map(float,file.read().split()))
+        file.close()
+    def printf(self):
+        for i in range(self.m):
+            for j in range(self.n):
+                print(self.mat[(i*self.n)+j],end=' ')
+            print("\n")
+    def __add__(self,obj):
+        if (obj.n!=self.n or obj.m!=self.n):
+            print("wrong matrix dimension")
+            pass
+        else:
+            w=matrix(self.n,self.m)
+            for i in range(self.m*self.n):
+                w.mat.append(self.mat[i]+obj.mat[i])
+            return(w)
+    def transpose(self):
+        w=matrix(self.m,self.n)
+        for i in range(self.n):
+            for j in range(self.m):
+                w.mat.append(self.mat[(j*self.n)+i])
+        return(w)
+    def trace(self):
+        p=0
+        for i in range(self.m):
+            for j in range(self.n):
+                if (i==j):
+                    p=self.mat[(i * self.n) + j]+p
+        return(p)
+    def __sub__(self,obj):
+        if (obj.n != self.n or obj.m != self.n):
+            print("wrong matrix dimension")
+            pass
+        else:
+            w = matrix(self.n, self.m)
+            for i in range(self.m * self.n):
+                w.mat.append(self.mat[i] - obj.mat[i])
+            return (w)
+    def __mul__(self,obj):
+        if (type(obj)==matrix):
+            if(self.n==obj.m):
+                w = matrix(obj.n,self.m)
+                for i in range(self.m):
+                    for j in range(obj.n):
+                        w.mat.append(0)
+                        for k in range(self.n):
+                            w.mat[(i*obj.n)+j]=self.mat[(i*self.n)+k]*obj.mat[(k*obj.n)+j]+w.mat[(i*obj.n)+j]
+                return (w)
+            else:
+                print("wrong matrix dimension")
+                pass
+        else:
+            w=matrix(self.n,self.m)
+            for i in range((self.m*self.n)):
+                w.mat.append(self.mat[i]*obj)
+            return(w)
+n=int(input())
+m=int(input())
+k=matrix(n,m)
+r = open("file.txt", "r")
+k.read(r)
+q=matrix(m,n)
+z = open("obj.txt", "r")
+q.read(z)
+e=k.transpose()
+e.printf()
+w=k*q
+w.printf()
