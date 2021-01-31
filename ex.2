@@ -67,7 +67,7 @@ class matrix:
                 w.mat.append(self.mat[i] * obj)
         return (w)
 
-    def low_tr(self):
+        def low_tr(self):
         if (self.m==self.n):
             w=matrix(self.m,self.n)
             for i in range(self.m):
@@ -77,7 +77,8 @@ class matrix:
                 w.mat[i]=self.mat[i]
             for i in range(self.m):
                 for j in range(self.m-i-1):
-                    w.mat[(i+1)*self.m+(self.m-1-j)]=self.mat[(i+1)*self.m+(self.m-1-j)]-self.mat[i*self.m+(self.m-1-j)]*(self.mat[self.m-2-j]/w.mat[(i+1)*self.m-2-j])
+                    for k in range(i+1):
+                        w.mat[(i+1)*self.m+(self.m-1-j)]=self.mat[(i+1)*self.m+(self.m-1-j)]-self.mat[i*self.m+(self.m-1-j)]*((i+1)*self.mat[(i+1)*self.m+k]/w.mat[k*self.m+k])
             return(w)
         else:
             print("wrong matrix dimension")
