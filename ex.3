@@ -125,10 +125,6 @@ class matrix:
         for i in range(self.n):
             w.mat[i+i*self.m]=w.mat[i+i*self.m]/w.mat[i+i*self.m]
         return(w)
-    def m(self):
-        return(self.m)
-    def n(self):
-        return(self.n)
 def slau(w,q):
     if(type(w) == matrix and type(q) == matrix):
         x=w.inverse()*q
