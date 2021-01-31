@@ -57,8 +57,7 @@ class matrix:
                     for j in range(obj.n):
                         w.mat.append(0)
                         for k in range(self.n):
-                            w.mat[(i * obj.n) + j] = self.mat[(i * self.n) + k] * obj.mat[(k * obj.n) + j] + w.mat[
-                                (i * obj.n) + j]
+                            w.mat[(i * obj.n) + j] = self.mat[(i * self.n) + k] * obj.mat[(k * obj.n) + j] + w.mat[(i * obj.n) + j]
             else:
                 print("wrong matrix dimension")
                 w = matrix(0, 0)
