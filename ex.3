@@ -115,6 +115,9 @@ class matrix:
                 for j in range(self.m - i):
                     for k in range(i + 1):
                         w.mat[(i+1)*self.m+(self.m-1-j)]=w.mat[(i+1)*self.m+(self.m-1-j)]-w.mat[i*self.m+(self.m-1-j)]*((i+1)*self.mat[(i+1)*self.m+k]/w.mat[k*self.m+k])
+            q=w.e()
+            for i in range(self.n):
+                w.mat[i*self.n+i]=w.mat[i*self.n+i]/q[i]
             return(w)
         else:
             print("no")
@@ -122,9 +125,10 @@ class matrix:
     def e(self):
         w=self.top_tr()
         w = w.low_tr()
+        q=[]
         for i in range(self.n):
-            w.mat[i+i*self.m]=w.mat[i+i*self.m]/w.mat[i+i*self.m]
-        return(w)
+            q.append(w.mat[i*self.n+i])
+        return(q)
 def slau(w,q):
     if(type(w) == matrix and type(q) == matrix):
         x=w.inverse()*q
